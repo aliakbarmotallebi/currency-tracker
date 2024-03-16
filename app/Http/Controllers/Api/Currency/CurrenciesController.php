@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Api\Currency;
 
+use App\Enums\Model\CurrencyStatusEnum;
 use App\Http\Controllers\Controller;
-use App\Models\Currency;
+use App\Repositories\CurrencyRepository;
 use App\Traits\ApiResponser;
 use OpenApi\Attributes as OA;
+
 
 class CurrenciesController extends Controller
 {
@@ -13,15 +15,21 @@ class CurrenciesController extends Controller
     
     #[OA\Get(
         path: '/currencies',
-        summary: 'Auth user and generating cookie header.',
+        summary: 'List of available and active currencies in the system.',
         tags: ['Currency'],
     )]
     #[OA\Response(
         response: 200,
-        description: 'Success auth',
+        description: 'Success 200',
         content: new OA\JsonContent(),
     )]
-    public function __invoke(){
-
+    public function __invoke(
+        CurrencyRepository $currencyRepository
+    ){
+        return $this->success(
+            data : $currencyRepository->confirmedCurrencyList(),
+            code: 200,
+            message: 'List Currencies'
+        );
     }
 }

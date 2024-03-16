@@ -13,4 +13,14 @@ class Currency extends Model
     protected $casts = [
         'status' => CurrencyStatusEnum::class
     ];
+
+    public function scopeAvailable($query)
+    {
+        return $query->whereStatus(CurrencyStatusEnum::STATUS_CONFIRMED->value);
+    }
+
+    public function transactions()
+    {
+        return $this->hasMany(Transaction::class);
+    }
 }

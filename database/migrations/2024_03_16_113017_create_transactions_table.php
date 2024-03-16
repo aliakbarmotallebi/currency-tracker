@@ -17,10 +17,11 @@ return new class extends Migration
             $table->unsignedBigInteger('currency_id');
 
             $table->string('amount');
-            $table->string('rate_to_rial');
+            $table->string('exchange_rate');
             
             $table->foreign('currency_id')
-                ->constrained()
+                ->references('id')
+                ->on('currencies')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
             $table->timestamps();

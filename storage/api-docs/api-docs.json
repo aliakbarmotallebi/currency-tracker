@@ -1,0 +1,125 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Api Currency Tracker Documentation",
+        "version": "0.1"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:8000/api",
+            "description": "local server"
+        }
+    ],
+    "paths": {
+        "/currencies": {
+            "get": {
+                "tags": [
+                    "Currency"
+                ],
+                "summary": "List of available and active currencies in the system.",
+                "operationId": "1158e1c13797931ee1bc6ddef53fc8d7",
+                "responses": {
+                    "200": {
+                        "description": "Success 200",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/transactions/currency/{currency}": {
+            "get": {
+                "tags": [
+                    "Transaction"
+                ],
+                "summary": "represents the average rate for each currency",
+                "operationId": "1efe2a5c05172a7c702a5def1b17c179",
+                "parameters": [
+                    {
+                        "name": "currency",
+                        "in": "path"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success auth",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/transactions/store": {
+            "post": {
+                "tags": [
+                    "Transaction"
+                ],
+                "summary": "To record currency receipt, which receives currency type, currency amount, and its conversion rate to Rial from the user",
+                "operationId": "2f4fd95fc9082822e83fd29afaebef35",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/StoreTransactionRequestDto"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success auth",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/transactions": {
+            "get": {
+                "tags": [
+                    "Transaction"
+                ],
+                "summary": "It lists receipts, including which currency,with rate",
+                "operationId": "f8c5b9688ff5f335d026e800937e284f",
+                "responses": {
+                    "200": {
+                        "description": "Success auth",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "StoreTransactionRequestDto": {
+                "properties": {
+                    "amount": {
+                        "type": "string"
+                    },
+                    "exchange_rate": {
+                        "type": "string"
+                    },
+                    "category_id": {
+                        "type": "string",
+                        "format": "int"
+                    }
+                },
+                "type": "object"
+            }
+        }
+    }
+}

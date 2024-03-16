@@ -1,19 +1,15 @@
 <?php
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\Api\Transaction\AverageRatePerCurrencyController;
+use App\Http\Controllers\Api\Currency\CurrenciesController;
+use App\Http\Controllers\Api\Transaction\TransactionsController;
+use App\Http\Controllers\Api\Transaction\TransactionStoreController;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "api" middleware group. Make something great!
-|
-*/
+Route::get('/currencies', CurrenciesController::class);
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::get('/transactions', TransactionsController::class);
+
+Route::get('/transactions/currency/{currency}', AverageRatePerCurrencyController::class);
+
+Route::post('/transactions/store', TransactionStoreController::class);

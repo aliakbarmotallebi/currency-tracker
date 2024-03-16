@@ -1,0 +1,45 @@
+openapi: 3.0.0
+info:
+  title: 'Api Currency Tracker'
+  version: '0.1'
+paths:
+  /currencies:
+    get:
+      tags:
+        - Currency
+      summary: 'List of available and active currencies in the system.'
+      operationId: 1158e1c13797931ee1bc6ddef53fc8d7
+      responses:
+        '200':
+          description: 'Success auth'
+          content:
+            application/json:
+              schema: {  }
+  /transactions/store:
+    post:
+      tags:
+        - Transaction
+      summary: 'To record currency receipt, which receives currency type, currency amount, and its conversion rate to Rial from the user'
+      operationId: 2f4fd95fc9082822e83fd29afaebef35
+      requestBody:
+        content:
+          application/json:
+            schema: {  }
+      responses:
+        '200':
+          description: 'Success auth'
+          content:
+            application/json:
+              schema: {  }
+  /transactions:
+    get:
+      tags:
+        - Transaction
+      summary: 'It lists our receipts from page one and displays each series, including which currency, how much, and at what rate'
+      operationId: f8c5b9688ff5f335d026e800937e284f
+      responses:
+        '200':
+          description: 'Success auth'
+          content:
+            application/json:
+              schema: {  }
