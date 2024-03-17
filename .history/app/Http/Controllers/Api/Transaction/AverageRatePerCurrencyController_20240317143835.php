@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Api\Transaction;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\CurrencyResource;
 use App\Models\Currency;
 use App\Repositories\CurrencyRepository;
 use App\Traits\ApiResponser;
@@ -23,26 +22,14 @@ class AverageRatePerCurrencyController extends Controller
     #[OA\Response(
         response: 200,
         description: 'Success',
-        content: new OA\JsonContent(
-            properties: [
-                new OA\Property(
-                    property: 'message',
-                    type: 'string'
-                ),
-                new OA\Property(property: 'data', type: 'object', ref: CurrencyResource::class),
-                new OA\Property(
-                    property: 'status',
-                    type: 'string'
-                ),
-            ]
-        ),
+        content: new OA\JsonContent(),
     )]
     public function __invoke(
         Currency $currency,
         CurrencyRepository $repository
     ){
         return $this->success(
-            data : new CurrencyResource($repository->findWithAverageWeightedRate($currency)),
+            data : $repository->findWithAverageWeightedRate($currency),
             code: 200
         );
     }

@@ -8,7 +8,7 @@ trait ApiResponser
 	/**
      * Return a success JSON response.
      *
-     * @param  array|string|object|null  $data
+     * @param  array|string  $data
      * @param  string  $message
      * @param  int|null  $code
      * @return \Illuminate\Http\JsonResponse
@@ -27,7 +27,7 @@ trait ApiResponser
      *
      * @param  string  $message
      * @param  int  $code
-     * @param  array|string|object|null  $data
+     * @param  array|string|null  $data
      * @return \Illuminate\Http\JsonResponse
      */
 	protected function error(string $message = null, int $code, $data = null)

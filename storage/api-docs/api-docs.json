@@ -23,7 +23,23 @@
                         "description": "Success 200",
                         "content": {
                             "application/json": {
-                                "schema": {}
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/CurrencyResource"
+                                            }
+                                        },
+                                        "status": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
                             }
                         }
                     }
@@ -45,10 +61,23 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Success auth",
+                        "description": "Success",
                         "content": {
                             "application/json": {
-                                "schema": {}
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/CurrencyResource"
+                                        },
+                                        "status": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
                             }
                         }
                     }
@@ -76,7 +105,20 @@
                         "description": "Success transactions",
                         "content": {
                             "application/json": {
-                                "schema": {}
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/TransactionResource"
+                                        },
+                                        "status": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
                             }
                         }
                     }
@@ -95,7 +137,23 @@
                         "description": "Success auth",
                         "content": {
                             "application/json": {
-                                "schema": {}
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/TransactionResource"
+                                            }
+                                        },
+                                        "status": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
                             }
                         }
                     }
@@ -116,6 +174,81 @@
                     },
                     "currency_id": {
                         "type": "integer"
+                    }
+                },
+                "type": "object"
+            },
+            "CurrencyResource": {
+                "title": "Info currency resource",
+                "required": [
+                    "id",
+                    "name",
+                    "createdAt",
+                    "updatedAt"
+                ],
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "createdAt": {
+                        "description": "Date and time created comment as ISO format",
+                        "type": "string",
+                        "example": "2023-04-29 19:00:58"
+                    },
+                    "updatedAt": {
+                        "description": "Date and time updated comment as ISO format",
+                        "type": "string",
+                        "example": "2023-04-29 19:00:58"
+                    }
+                },
+                "type": "object"
+            },
+            "TransactionResource": {
+                "title": "Info currency resource",
+                "required": [
+                    "id",
+                    "amount",
+                    "exchangeRate",
+                    "currency",
+                    "createdAt",
+                    "updatedAt"
+                ],
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "amount": {
+                        "type": "string"
+                    },
+                    "exchangeRate": {
+                        "type": "string"
+                    },
+                    "currency": {
+                        "properties": {
+                            "id": {
+                                "type": "integer",
+                                "example": 1
+                            },
+                            "name": {
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "createdAt": {
+                        "description": "Date and time created comment as ISO format",
+                        "type": "string",
+                        "example": "2023-04-29 19:00:58"
+                    },
+                    "updatedAt": {
+                        "description": "Date and time updated comment as ISO format",
+                        "type": "string",
+                        "example": "2023-04-29 19:00:58"
                     }
                 },
                 "type": "object"

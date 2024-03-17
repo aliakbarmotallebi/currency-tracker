@@ -27,10 +27,14 @@ class CurrenciesController extends Controller
                     property: 'message',
                     type: 'string'
                 ),
-                new OA\Property(property: 'data', type: 'array', items: new OA\Items(ref: CurrencyResource::class)),
                 new OA\Property(
-                    property: 'status',
-                    type: 'string'
+                    description: 'Collection of users',
+                    type: 'array',
+                    items: ''
+                ),
+                new OA\Property(
+                    property: 'code',
+                    type: 'integer'
                 ),
             ]
         ),
@@ -39,7 +43,7 @@ class CurrenciesController extends Controller
         CurrencyRepository $repository
     ){
         return $this->success(
-            data : CurrencyResource::collection($repository->confirmedCurrencyList()),
+            data : $repository->confirmedCurrencyList(),
             code: 200,
             message: 'List Currencies'
         );

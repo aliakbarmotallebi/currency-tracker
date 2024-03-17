@@ -44,8 +44,9 @@ class TransactionStoreController extends Controller
         TransactionRepository $repository
     ){
         try{
+            $repository->create($request->toArray());
             return $this->success(
-                data : new TransactionResource($repository->create($request->toArray())),
+                data : $repository->all(),
                 code: 200,
                 message: 'List transaction receipts'
             );

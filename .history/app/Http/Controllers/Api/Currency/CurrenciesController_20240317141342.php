@@ -22,16 +22,9 @@ class CurrenciesController extends Controller
         response: 200,
         description: 'Success 200',
         content: new OA\JsonContent(
-            properties: [
-                new OA\Property(
-                    property: 'message',
-                    type: 'string'
-                ),
-                new OA\Property(property: 'data', type: 'array', items: new OA\Items(ref: CurrencyResource::class)),
-                new OA\Property(
-                    property: 'status',
-                    type: 'string'
-                ),
+            type: 'object',
+            allOf: [
+                new OA\Schema(ref: CurrencyResource::class),
             ]
         ),
     )]
@@ -39,7 +32,7 @@ class CurrenciesController extends Controller
         CurrencyRepository $repository
     ){
         return $this->success(
-            data : CurrencyResource::collection($repository->confirmedCurrencyList()),
+            data : $repository->confirmedCurrencyList(),
             code: 200,
             message: 'List Currencies'
         );

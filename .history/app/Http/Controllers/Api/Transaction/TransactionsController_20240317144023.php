@@ -37,7 +37,7 @@ class TransactionsController extends Controller
      TransactionRepository $repository   
     ){
         return $this->success(
-            data : TransactionResource::collection($repository->all()),
+            data : $repository->all(),
             code: 200,
             message: 'List transaction receipts'
         );

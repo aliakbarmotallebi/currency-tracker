@@ -25,27 +25,16 @@ class TransactionStoreController extends Controller
     #[OA\Response(
         response: 200,
         description: 'Success transactions',
-        content: new OA\JsonContent(
-            properties: [
-                new OA\Property(
-                    property: 'message',
-                    type: 'string'
-                ),
-                new OA\Property(property: 'data', type: 'object', ref: TransactionResource::class),
-                new OA\Property(
-                    property: 'status',
-                    type: 'string'
-                ),
-            ]
-        ),
+        content: new OA\JsonContent( ref: TransactionResource::class),
     )]
     public function __invoke(
         StoreTransactionRequest $request,
         TransactionRepository $repository
     ){
         try{
+            $repository->create($request->toArray());
             return $this->success(
-                data : new TransactionResource($repository->create($request->toArray())),
+                data : $repository->all(),
                 code: 200,
                 message: 'List transaction receipts'
             );

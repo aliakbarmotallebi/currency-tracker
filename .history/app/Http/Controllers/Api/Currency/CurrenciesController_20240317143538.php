@@ -29,8 +29,8 @@ class CurrenciesController extends Controller
                 ),
                 new OA\Property(property: 'data', type: 'array', items: new OA\Items(ref: CurrencyResource::class)),
                 new OA\Property(
-                    property: 'status',
-                    type: 'string'
+                    property: 'code',
+                    type: 'integer'
                 ),
             ]
         ),

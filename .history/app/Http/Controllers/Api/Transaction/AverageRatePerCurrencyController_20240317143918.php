@@ -1,33 +1,35 @@
 <?php
 
-namespace App\Http\Controllers\Api\Currency;
+namespace App\Http\Controllers\Api\Transaction;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\CurrencyResource;
+use App\Models\Currency;
 use App\Repositories\CurrencyRepository;
 use App\Traits\ApiResponser;
+use Illuminate\Http\Request;
 use OpenApi\Attributes as OA;
 
-
-class CurrenciesController extends Controller
+class AverageRatePerCurrencyController extends Controller
 {
     use ApiResponser;
-    
+
     #[OA\Get(
-        path: '/currencies',
-        summary: 'List of available and active currencies in the system.',
-        tags: ['Currency'],
+        path: '/transactions/currency/{currency}',
+        summary: 'represents the average rate for each currency',
+        tags: ['Transaction'],
     )]
+    #[OA\Parameter(name: 'currency', in: 'path')]
     #[OA\Response(
         response: 200,
-        description: 'Success 200',
+        description: 'Success',
         content: new OA\JsonContent(
             properties: [
                 new OA\Property(
                     property: 'message',
                     type: 'string'
                 ),
-                new OA\Property(property: 'data', type: 'array', items: new OA\Items(ref: CurrencyResource::class)),
+                new OA\Property(property: 'data', type: 'object', ref: CurrencyResource::class),
                 new OA\Property(
                     property: 'status',
                     type: 'string'
@@ -36,12 +38,12 @@ class CurrenciesController extends Controller
         ),
     )]
     public function __invoke(
+        Currency $currency,
         CurrencyRepository $repository
     ){
         return $this->success(
-            data : CurrencyResource::collection($repository->confirmedCurrencyList()),
-            code: 200,
-            message: 'List Currencies'
+            data : $repository->findWithAverageWeightedRate($currency),
+            code: 200
         );
     }
 }
