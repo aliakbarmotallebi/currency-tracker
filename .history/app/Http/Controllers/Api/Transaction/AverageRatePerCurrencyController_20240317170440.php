@@ -44,11 +44,7 @@ class AverageRatePerCurrencyController extends Controller
         $averageExchangeRate = $repository->findWithAverageWeightedRate($currency);
 
         return $this->success(
-            data : new CurrencyResource(
-                $currency,
-                $averageExchangeRate,
-                true
-            ),
+            data : new CurrencyResource($currency, $averageExchangeRate),
             code: 200
         );
     }

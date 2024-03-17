@@ -47,9 +47,9 @@ class CurrencyRepository extends Repository
     public function findWithAverageWeightedRate(
         Currency $currency)
     {
-       return $this->currencyManager->calculateWeightedAverage(
-        $currency->transactions()->pluck('amount')->toArray(), 
-        $currency->transactions()->pluck('exchange_rate')->toArray());
+    //    return $this->currencyManager->calculateWeightedAverage(
+    //     $currency->transactions()->get()->pluck(['amount']), 
+    //     $currency->transactions()->get()->pluck('exchange_rate'));
     }
 
     public function find(string $id)

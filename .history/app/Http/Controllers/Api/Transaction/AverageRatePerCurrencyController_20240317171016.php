@@ -45,9 +45,9 @@ class AverageRatePerCurrencyController extends Controller
 
         return $this->success(
             data : new CurrencyResource(
-                $currency,
-                $averageExchangeRate,
-                true
+             $currency,
+             $averageExchangeRate,
+             true
             ),
             code: 200
         );

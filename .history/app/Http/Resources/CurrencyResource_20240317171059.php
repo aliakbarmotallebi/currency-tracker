@@ -22,18 +22,15 @@ use OpenApi\Attributes as OA;
 )]
 class CurrencyResource extends JsonResource
 {
-    protected int|null $averageExchangeRate;
-     
-    protected bool $display;
+    protected int $averageExchangeRate;
 
     public function __construct(
         $resource,
-        int|null $averageExchangeRate,
+        int $averageExchangeRate = 0,
         bool $display = false)
     {
         parent::__construct($resource);
         $this->averageExchangeRate = $averageExchangeRate;
-        $this->display = $display;
     }
     
     /**

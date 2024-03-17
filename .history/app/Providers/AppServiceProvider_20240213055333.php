@@ -2,8 +2,6 @@
 
 namespace App\Providers;
 
-use App\Helpers\WeightedAverageCalculator\WeightedAverageCalculator;
-use App\Helpers\WeightedAverageCalculator\WeightedAverageCalculatorInterface;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -21,6 +19,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        $this->app->bind(WeightedAverageCalculatorInterface::class, WeightedAverageCalculator::class);
+        //
     }
 }

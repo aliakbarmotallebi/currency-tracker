@@ -1,7 +1,6 @@
 <?php
 
 use App\Enums\Model\CurrencyStatusEnum;
-use App\Models\Currency;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -20,14 +19,6 @@ return new class extends Migration
                 ->default(CurrencyStatusEnum::STATUS_CONFIRMED->value);
             $table->timestamps();
         });
-
-        Currency::create([
-            'name' => 'EUR',
-        ]);
-
-        Currency::create([
-            'name' => 'USD',
-        ]);
     }
 
     /**

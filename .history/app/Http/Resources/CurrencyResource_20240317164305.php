@@ -14,7 +14,6 @@ use OpenApi\Attributes as OA;
     properties: [
         new OA\Property(property: 'id', type: 'integer', example: 1),
         new OA\Property(property: 'name', type: 'string'),
-        new OA\Property(property: 'amountTotal', type: 'string'),
         new OA\Property(property: 'averageExchangeRate', type: 'string'),
         new OA\Property(property: 'createdAt', description: 'Date and time created comment as ISO format', type: 'string', example: '2023-04-29 19:00:58'),
         new OA\Property(property: 'updatedAt', description: 'Date and time updated comment as ISO format', type: 'string', example: '2023-04-29 19:00:58'),
@@ -22,20 +21,7 @@ use OpenApi\Attributes as OA;
 )]
 class CurrencyResource extends JsonResource
 {
-    protected int|null $averageExchangeRate;
-     
-    protected bool $display;
-
-    public function __construct(
-        $resource,
-        int|null $averageExchangeRate,
-        bool $display = false)
-    {
-        parent::__construct($resource);
-        $this->averageExchangeRate = $averageExchangeRate;
-        $this->display = $display;
-    }
-    
+    protected CurrencyRepository $repository;
     /**
      * Transform the resource into an array.
      *
@@ -48,8 +34,8 @@ class CurrencyResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'amountTotal' => $this->when($this->display , $this->transactions()->sum('amount')),
-            'averageExchangeRate' => $this->when($this->display, $this->averageExchangeRate),
+            'amountTotal' => $this->whenNotNull($this->tra),
+            'averageExchangeRate' => $this->whenNotNull($this->repository->findWithAverageWeightedRate($this)),
             'createdAt' => (string)$this->created_at,
             'updatedAt' => (string)$this->updated_at,
         ];

@@ -38,17 +38,10 @@ class AverageRatePerCurrencyController extends Controller
         ),
     )]
     public function __invoke(
-        Currency $currency,
-        CurrencyRepository $repository
+        Currency $currency
     ){
-        $averageExchangeRate = $repository->findWithAverageWeightedRate($currency);
-
         return $this->success(
-            data : new CurrencyResource(
-                $currency,
-                $averageExchangeRate,
-                true
-            ),
+            data : new CurrencyResource($currency),
             code: 200
         );
     }

@@ -194,6 +194,9 @@
                     "name": {
                         "type": "string"
                     },
+                    "averageExchangeRate": {
+                        "type": "string"
+                    },
                     "createdAt": {
                         "description": "Date and time created comment as ISO format",
                         "type": "string",

@@ -16,11 +16,9 @@ class CurrencyRepository extends Repository
     private $currencyManager;
 
     public function __construct(
-        Container $container,
-        CurrencyManager $currencyManager)
+        Container $container)
     {
         $this->container = $container;
-        $this->currencyManager = $currencyManager;
         $this->makeModel();
     }
 
@@ -48,8 +46,8 @@ class CurrencyRepository extends Repository
         Currency $currency)
     {
        return $this->currencyManager->calculateWeightedAverage(
-        $currency->transactions()->pluck('amount')->toArray(), 
-        $currency->transactions()->pluck('exchange_rate')->toArray());
+        $currency->transactions()->get()->pluck('amount'), 
+        $currency->transactions()->get()->pluck('exchange_rate'));
     }
 
     public function find(string $id)
