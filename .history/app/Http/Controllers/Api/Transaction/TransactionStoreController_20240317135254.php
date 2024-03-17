@@ -15,7 +15,7 @@ class TransactionStoreController extends Controller
 
     #[OA\Post(
         path: '/transactions/store',
-        summary: 'To record currency receipt, which receives currency type, currency amount form user',
+        summary: 'To record currency receipt, which receives currency type, currency amount, and its conversion rate to Rial from the user',
         requestBody: new OA\RequestBody(
             content: new OA\JsonContent(ref: StoreTransactionRequest::class)
         ),

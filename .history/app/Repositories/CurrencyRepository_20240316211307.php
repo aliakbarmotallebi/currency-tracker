@@ -1,12 +1,12 @@
 <?php namespace App\Repositories;
 
 use App\Models\Currency;
-use App\Models\Transaction;
 use Illuminate\Container\Container;
 use App\Repositories\Contracts\RepositoryInterface;
 use App\Repositories\Eloquent\Repository;
+use DB;
 
-class TransactionRepository extends Repository
+class CurrencyRepository extends Repository
 {
     protected $container;
 
@@ -25,13 +25,24 @@ class TransactionRepository extends Repository
 
     public function model()
     {
-        return Transaction::class;
+        return Currency::class;
     }
 
+    public function confirmedCurrencyList()
+    {
+       return $this->model->available()->get();
+    }
 
     public function all()
     {
         return $this->model->get();
+    }
+
+    public function findWithAverageWeightedRate(Currency $currency)
+    {
+        return $this->model->withCount(['transactions as average_exchange_rate' => function($query) {
+                    $query->select(DB::raw('AVG(exchange_rate)'));
+        }])->where('currencies.id', $currency->id)->first();
     }
 
     public function find(string $id)
@@ -46,7 +57,7 @@ class TransactionRepository extends Repository
 
     public function create(array $data)
     {
-        return $this->model->create($data);
+
     }
     
     public function save(array $data)

@@ -22,10 +22,10 @@ class TransactionsController extends Controller
         content: new OA\JsonContent(),
     )]
     public function __invoke(
-     TransactionRepository $repository   
+     TransactionRepository $transactionRepository   
     ){
         return $this->success(
-            data : $repository->all(),
+            data : $transactionRepository->all(),
             code: 200,
             message: 'List transaction receipts'
         );

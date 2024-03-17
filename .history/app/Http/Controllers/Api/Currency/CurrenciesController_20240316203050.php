@@ -24,10 +24,10 @@ class CurrenciesController extends Controller
         content: new OA\JsonContent(),
     )]
     public function __invoke(
-        CurrencyRepository $repository
+        CurrencyRepository $currencyRepository
     ){
         return $this->success(
-            data : $repository->confirmedCurrencyList(),
+            data : $currencyRepository->confirmedCurrencyList(),
             code: 200,
             message: 'List Currencies'
         );

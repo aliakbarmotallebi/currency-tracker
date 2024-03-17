@@ -60,20 +60,20 @@
                 "tags": [
                     "Transaction"
                 ],
-                "summary": "To record currency receipt, which receives currency type, currency amount, and its conversion rate to Rial from the user",
+                "summary": "To record currency receipt, which receives currency type, currency amount form user",
                 "operationId": "2f4fd95fc9082822e83fd29afaebef35",
                 "requestBody": {
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/StoreTransactionRequestDto"
+                                "$ref": "#/components/schemas/StoreTransactionRequest"
                             }
                         }
                     }
                 },
                 "responses": {
                     "200": {
-                        "description": "Success auth",
+                        "description": "Success transactions",
                         "content": {
                             "application/json": {
                                 "schema": {}
@@ -105,7 +105,8 @@
     },
     "components": {
         "schemas": {
-            "StoreTransactionRequestDto": {
+            "StoreTransactionRequest": {
+                "title": "Request store transaction",
                 "properties": {
                     "amount": {
                         "type": "string"
@@ -113,9 +114,8 @@
                     "exchange_rate": {
                         "type": "string"
                     },
-                    "category_id": {
-                        "type": "string",
-                        "format": "int"
+                    "currency_id": {
+                        "type": "integer"
                     }
                 },
                 "type": "object"

@@ -8,9 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Transaction extends Model
 {
     use HasFactory;
-    protected $fillable = [
-        'amount','exchange_rate','currency_id'
-    ];
+
     public function currency()
     {
         return $this->belongsTo(Currency::class);

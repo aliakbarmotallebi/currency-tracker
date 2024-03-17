@@ -31,7 +31,7 @@ class TransactionRepository extends Repository
 
     public function all()
     {
-        return $this->model->get();
+        //
     }
 
     public function find(string $id)
