@@ -101,7 +101,7 @@
                     }
                 },
                 "responses": {
-                    "200": {
+                    "201": {
                         "description": "Success transactions",
                         "content": {
                             "application/json": {
@@ -192,6 +192,9 @@
                         "example": 1
                     },
                     "name": {
+                        "type": "string"
+                    },
+                    "amountTotal": {
                         "type": "string"
                     },
                     "averageExchangeRate": {

@@ -13,7 +13,7 @@ use OpenApi\Attributes\Items;
     properties: [
         new OA\Property(property: 'id', type: 'integer', example: 1),
         new OA\Property(property: 'amount', type: 'string'),
-        new OA\Property(property: 'exchangeRate', type: 'string'),
+        new OA\Property(property: 'exchange_rate', type: 'string'),
         new OA\Property(property: 'currency', type: 'object',
             properties: [
                 new OA\Property(property: 'id', type: 'integer', example: 1),

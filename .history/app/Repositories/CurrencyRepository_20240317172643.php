@@ -45,7 +45,7 @@ class CurrencyRepository extends Repository
     }
 
     public function findWithAverageWeightedRate(
-        Currency $currency): string|null
+        Currency $currency)
     {
        return $this->currencyManager->calculateWeightedAverage(
         $currency->transactions()->pluck('amount')->toArray(), 
